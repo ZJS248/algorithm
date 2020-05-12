@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let node1={
+    value:1,
+    left:{
+        value:4,
+        left:{
+            value:5,
+        },
+        right:{
+            value:3
+        }
+    },
+    right:{
+        value:7,
+        left:{
+            value:6,
+            left:{
+                value:0
+            },
+            right:{
+                value:9
+            }
+        },
+        right:{
+            value:2,
+            left:{
+                value:9
+            }
+        }
+    }
+}
+//                 1
+//     4                           7
+// 5       3               6               2
+//                     0       9         9
+function Stree(node,sum){
+    let isYe=(node.left==null&&node.right==null);
+    if(sum==node.value&&isYe){
+        return true
+    }
+    let left=false;
+    if(node.left){
+        left=Stree(node.left,sum-node.value)
+    }
+    let right=false;
+    if(node.right){
+        right=Stree(node.right,sum-node.value);
+    }
+    return (left||right);
+}
+
+console.log(Stree(node1,8));
+console.log(Stree(node1,10));
+console.log(Stree(node1,99));
+//若根节点到某一叶子节点的路径值等于sum返回true
+</script>
+</html>
